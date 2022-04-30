@@ -1,0 +1,3 @@
+[submodule "vim/.vim"]
+	path = vim/.vim
+	url = git@github.com:wirano/dotvim.git

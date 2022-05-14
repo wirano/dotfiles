@@ -15,6 +15,7 @@ export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nvidia
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export GOPATH=$XDG_DATA_HOME/go
 export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
+export GTK_RC_FILES=$XDG_CONFIG_HOME/gtk-1.0/gtkrc-1.0
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0
 export IDF_TOOLS_PATH=$XDG_DATA_HOME/esp-idf-tools
 export IPYTHONDIR=$XDG_DATA_HOME/ipython

@@ -1,3 +1,9 @@
+# XGD Dir
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
 # zsh env
 export ZDOTDIR=$HOME/.config/zsh
 export HISTFILE=$HOME/.local/state/zsh/zsh_history

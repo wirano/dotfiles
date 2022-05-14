@@ -1,18 +1,28 @@
-[Desktop Entry]
-Name=Visual Studio Code
-Comment=Code Editing. Refined.
-GenericName=Text Editor
-Exec=code --unity-launch %F
-Icon=visual-studio-code
-Type=Application
-StartupNotify=false
-StartupWMClass=Code
-Categories=TextEditor;Development;IDE;
-MimeType=text/plain;inode/directory;application/x-visual-studio-code-workspace;
-Actions=new-empty-window;
-Keywords=vscode;
-
 [Desktop Action new-empty-window]
-Name=New Empty Window
 Exec=code --no-sandbox --new-window %F
 Icon=visual-studio-code
+Name=New Empty Window
+
+[Desktop Entry]
+Actions=new-empty-window;
+Categories=TextEditor;Development;IDE;
+Comment[zh_CN]=Code Editing. Refined.
+Comment=Code Editing. Refined.
+Exec=code --unity-launch %F
+GenericName[zh_CN]=Text Editor
+GenericName=Text Editor
+Icon=visual-studio-code
+Keywords=vscode;
+MimeType=text/plain;inode/directory;application/x-visual-studio-code-workspace;
+Name[zh_CN]=Visual Studio Code
+Name=Visual Studio Code
+Path=
+StartupNotify=false
+StartupWMClass=Code
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

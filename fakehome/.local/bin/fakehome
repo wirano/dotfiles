@@ -1,1 +1,20 @@
 #!/bin/env zsh
+
+local app_name=${0:t}
+local argv=($*)
+
+if [[ $app_name == "fakehome" ]] {
+    app_name=${1:t}
+    argv=($*[2,-1])
+    ln -sf $0 $app_name
+}
+
+app_path=(${$(where $app_name):#$0}) || exit 1
+app_bin=$app_path[-1]
+
+fake_home=${XDG_DATA_HOME:-$HOME/.local/share}/fakehome/$app_name
+[[ -d $fake_home ]] || mkdir -p $fake_home
+export HOME=$fake_home
+
+exec $app_bin $argv
+

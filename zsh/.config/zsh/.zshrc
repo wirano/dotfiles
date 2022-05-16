@@ -130,8 +130,8 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login
 # if tmux is executable and not inside a tmux session, then try to attach.
 # # if attachment fails, start a new session
-[[ -x "$(command -v tmux)" ]] \
-  && [[ -z "${TMUX}" ]] \
+[[ -x $(command -v tmux) ]] \
+  && [[ -z $TMUX ]] \
   && { tmux attach || tmux; } >/dev/null 2>&1
 
 ZLE_RPROMPT_INDENT=0

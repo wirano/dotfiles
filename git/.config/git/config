@@ -1,0 +1,8 @@
+[user]
+	name = wirano
+	email = 982593395@qq.com
+[core]
+	autocrlf = input
+	editor = vim
+[init]
+	defaultBranch = master

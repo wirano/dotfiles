@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]] {
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+}
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -76,18 +76,18 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-git
-colored-man-pages
-z
-vi-mode
-zsh-syntax-highlighting
-zsh-autosuggestions
-sudo
-cp
-extract
-screen
-virtualenv
-pip
+    git
+    colored-man-pages
+    z
+    vi-mode
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    sudo
+    cp
+    extract
+    screen
+    virtualenv
+    pip
 )
 
 # User configuration
@@ -98,11 +98,11 @@ pip
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-   export EDITOR='vim'
-fi
+if [[ -n $SSH_CONNECTION ]] {
+    export EDITOR='vim'
+} else {
+    export EDITOR='vim'
+}
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -117,21 +117,24 @@ fi
 # alias ohmyzsh="mate $ZDOTDIR/.oh-my-zsh"
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
+if [[ ! -d $ZSH_CACHE_DIR ]] {
+    mkdir $ZSH_CACHE_DIR
+}
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-# To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
-[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+if [[ $TERM != linux ]] {
+    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-# https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login
-# if tmux is executable and not inside a tmux session, then try to attach.
-# # if attachment fails, start a new session
-[[ -x $(command -v tmux) ]] \
-  && [[ -z $TMUX ]] \
-  && { tmux attach || tmux; } >/dev/null 2>&1
+    # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
+    [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+
+    # https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login
+    # if tmux is executable and not inside a tmux session, then try to attach.
+    # # if attachment fails, start a new session
+    [[ -x $(command -v tmux) ]] \
+        && [[ -z $TMUX ]] \
+        && { tmux attach || tmux; } >/dev/null 2>&1
+}
 
 ZLE_RPROMPT_INDENT=0

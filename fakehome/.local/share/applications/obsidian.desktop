@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Office;
+Comment[zh_CN]=Obsidian
+Comment=Obsidian
+Exec=obsidian %U
+GenericName[zh_CN]=
+GenericName=
+Icon=obsidian
+MimeType=
+Name[zh_CN]=Obsidian
+Name=Obsidian
+Path=
+StartupNotify=true
+StartupWMClass=obsidian
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

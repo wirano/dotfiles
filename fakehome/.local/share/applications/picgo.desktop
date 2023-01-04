@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=PicGo
+Comment=Easy to upload your pic & copy to write
+Exec=picgo %U
+Terminal=false
+Type=Application
+Icon=picgo
+StartupWMClass=PicGo
+X-AppImage-Version=2.1.2.38
+Categories=Utility;
+MimeType=x-scheme-handler/picgo
+

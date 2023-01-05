@@ -4,27 +4,53 @@ source $ZDOTDIR/zsh_unplugged_wirano.zsh
 # Basic config
 
 autoload -U compinit
-compinit
+compinit -D ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
 
 
 # History
-HISTFILE=${XDG_STATE_HPME}/zsh/zsh_history
-HISTSIZE='128000'
-SAVEHIST='128000'
+HISTFILE=${XDG_STATE_HOME}/zsh/zsh_history
+HISTSIZE=128000
+SAVEHIST=128000
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 # add a space before a command to ignore history
 setopt hist_ignore_space
+# search history
+[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
+[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
+# enter dir without cd
 setopt autocd
 
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_minus
 
+# use comments in interactive mode
 setopt interactive_comments
 
+# complete "identifier=path" style arguments
 setopt magic_equal_subst
+
+# dirstack
+DIRSTACKFILE="$HOME/.cache/zsh/dirs"
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+      dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+        [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+chpwd() {
+      print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
+  }
+
+DIRSTACKSIZE=20
+
+setopt autopushd pushdsilent pushdtohome
+
+## Remove duplicate entries
+setopt pushdignoredups
+  
+## This reverts the +/- operators.
+setopt pushdminus
 
 # Plugins
 plugins=(

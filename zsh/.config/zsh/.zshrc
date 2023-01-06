@@ -15,10 +15,9 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 # add a space before a command to ignore history
 setopt hist_ignore_space
-# search history
-[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
-[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
+# disable bell
+unsetopt beep
 # enter dir without cd
 setopt autocd
 
@@ -48,7 +47,7 @@ setopt autopushd pushdsilent pushdtohome
 
 ## Remove duplicate entries
 setopt pushdignoredups
-  
+
 ## This reverts the +/- operators.
 setopt pushdminus
 
@@ -78,11 +77,16 @@ files=(
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/common-aliases/common-aliases.plugin.zsh
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
 )
 
 # clone, source, and add to fpath
 plugin-load $plugins
 load-files $files
+
+# plugin history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

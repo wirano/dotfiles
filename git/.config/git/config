@@ -1,8 +1,11 @@
 [user]
 	name = wirano
-	email = 982593395@qq.com
+	email = git@wirano.me
+	signingkey = FB62E4F3B412E607
 [core]
 	autocrlf = input
 	editor = vim
 [init]
 	defaultBranch = master
+[commit]
+	gpgsign = true

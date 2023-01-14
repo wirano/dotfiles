@@ -67,6 +67,8 @@ plugins=(
     djui/alias-tips
     peterhurford/up.zsh
 
+    # theme
+    romkatv/powerlevel10k
     zdharma-continuum/fast-syntax-highlighting
 )
 
@@ -105,7 +107,7 @@ if [[ -n $SSH_CONNECTION ]] {
 }
 
 if [[ $TERM != linux ]] {
-    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    source $ZPLUGINDIR/powerlevel10k/powerlevel10k.zsh-theme
 
     # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
     [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh

@@ -1,41 +1,5 @@
 # zsh_unplugged
-## source zsh_unplugged
 source $ZDOTDIR/zsh_unplugged_wirano.zsh
-
-## Plugins
-plugins=(
-    # use zsh-defer magic to load the remaining plugins at hypersonic speed!
-    #romkatv/zsh-defer
-
-    # core plugins
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-completions
-
-    # user plugins
-    rupa/z
-    hlissner/zsh-autopair
-    djui/alias-tips
-    peterhurford/up.zsh
-
-    # theme
-    romkatv/powerlevel10k
-    zdharma-continuum/fast-syntax-highlighting
-)
-
-files=(
-    # ohmyzsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/common-aliases/common-aliases.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-)
-
-## clone, source, and add to fpath
-plugin-load $plugins
-load-files $files
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -50,11 +14,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zs
 # Basic config
 
 autoload -U compinit
-compinit -D ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
-
+compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
 
 # History
-HISTFILE=${XDG_STATE_HOME}/zsh/zsh_history
+HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/zsh_history
 HISTSIZE=128000
 SAVEHIST=128000
 setopt hist_save_no_dups
@@ -123,4 +86,39 @@ if [[ $TERM != linux ]] {
         && [[ -z $TMUX ]] \
         && { tmux attach || tmux; } >/dev/null 2>&1
 }
+
+## Plugins
+plugins=(
+    # use zsh-defer magic to load the remaining plugins at hypersonic speed!
+    #romkatv/zsh-defer
+
+    # core plugins
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-completions
+
+    # user plugins
+    rupa/z
+    hlissner/zsh-autopair
+    djui/alias-tips
+    peterhurford/up.zsh
+
+    # theme
+    romkatv/powerlevel10k
+    zdharma-continuum/fast-syntax-highlighting
+)
+
+files=(
+    # ohmyzsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/common-aliases/common-aliases.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
+)
+
+## clone, source, and add to fpath
+plugin-load $plugins
+load-files $files
 

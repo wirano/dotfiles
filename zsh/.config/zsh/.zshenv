@@ -1,8 +1,6 @@
 # zsh env
 [[ ! -d ${XDG_STATE_HOME:-$HOME/.local/state}/zsh ]] && mkdir -p ${XDG_STATE_HOME:-$HOME/.local/state}/zsh 
 export _Z_DATA=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/z
-[[ ! -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh ]] && mkdir -p ${XDG_CACHE_HOME:-$HOME/.cache}/zsh 
-export ZSH_COMPDUMP=$XDG_CACHE_HOME/zsh/zcompdump-$HOST-$ZSH_VERSION
 
 # add path
 path=($HOME/.local/bin $path)

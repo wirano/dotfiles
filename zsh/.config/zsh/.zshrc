@@ -1,5 +1,51 @@
-# source zsh_unplugged
+# zsh_unplugged
+## source zsh_unplugged
 source $ZDOTDIR/zsh_unplugged_wirano.zsh
+
+## Plugins
+plugins=(
+    # use zsh-defer magic to load the remaining plugins at hypersonic speed!
+    #romkatv/zsh-defer
+
+    # core plugins
+    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-completions
+
+    # user plugins
+    rupa/z
+    hlissner/zsh-autopair
+    djui/alias-tips
+    peterhurford/up.zsh
+
+    # theme
+    romkatv/powerlevel10k
+    zdharma-continuum/fast-syntax-highlighting
+)
+
+files=(
+    # ohmyzsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/common-aliases/common-aliases.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
+)
+
+## clone, source, and add to fpath
+plugin-load $plugins
+load-files $files
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# sadly the author seems not likely to move this file to a floder under ~/.cache
+# see: https://github.com/romkatv/powerlevel10k/issues/1817
+# see: https://github.com/romkatv/powerlevel10k/issues/1561
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh" ]] {
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh"
+}
 
 # Basic config
 
@@ -51,51 +97,9 @@ setopt pushdignoredups
 ## This reverts the +/- operators.
 setopt pushdminus
 
-# Plugins
-plugins=(
-    # use zsh-defer magic to load the remaining plugins at hypersonic speed!
-    #romkatv/zsh-defer
-
-    # core plugins
-    zsh-users/zsh-autosuggestions
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-completions
-
-    # user plugins
-    rupa/z
-    hlissner/zsh-autopair
-    djui/alias-tips
-    peterhurford/up.zsh
-
-    # theme
-    romkatv/powerlevel10k
-    zdharma-continuum/fast-syntax-highlighting
-)
-
-files=(
-    # ohmyzsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/common-aliases/common-aliases.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-)
-
-# clone, source, and add to fpath
-plugin-load $plugins
-load-files $files
-
 # plugin history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/p10k/p10k-instant-prompt-${(%):-%n}.zsh" ]] {
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/p10k/p10k-instant-prompt-${(%):-%n}.zsh"
-}
 
 ZLE_RPROMPT_INDENT=0
 

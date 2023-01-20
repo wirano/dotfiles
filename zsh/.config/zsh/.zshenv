@@ -10,5 +10,5 @@ export ZSH_COMPDUMP=$XDG_CACHE_HOME/zsh/zcompdump-$HOST-$ZSH_VERSION
 path=($HOME/.local/bin $path)
 
 # environment
-[[ ! $XDG_CONFIG_HOME ]] && systemctl --user import-environment
+[[ ! $XDG_CONFIG_HOME ]] && export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 

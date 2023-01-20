@@ -3,10 +3,13 @@
 # zsh_unplugged: https://github.com/mattmc3/zsh_unplugged
 # a simple, ultra-fast plugin handler
 
+# where should we download your Zsh plugins?
+ZPLUGINDIR=${ZDOTDIR:-$HOME/.config/zsh}/plugins
+
 # clone a plugin, identify its init file, source it, and add it to your fpath
 function plugin-load {
   local repo plugdir initfile
-  ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
+  [[ ! ZPLUGINDIR ]] && ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
   for repo in $@; do
     plugdir=$ZPLUGINDIR/${repo:t}
     initfile=$plugdir/${repo:t}.plugin.zsh
@@ -26,7 +29,7 @@ function plugin-load {
 
 # if you want to compile your plugins you may see performance gains
 function plugin-compile() {
-  ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
+  [[ ! ZPLUGINDIR ]] && ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
   autoload -U zrecompile
   local f
   for f in $ZPLUGINDIR/**/*.zsh{,-theme}(N); do
@@ -58,3 +61,12 @@ function load-files () {
         fi
     done
 }
+
+function plugin-update {
+  [[ ! ZPLUGINDIR ]] && ZPLUGINDIR=${ZPLUGINDIR:-$HOME/.config/zsh/plugins}
+  for d in $ZPLUGINDIR/*/.git(/); do
+    echo "Updating ${d:h:t}..."
+    command git -C "${d:h}" pull --ff --recurse-submodules --depth 1 --rebase --autostash
+  done
+}
+

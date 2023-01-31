@@ -36,7 +36,8 @@ container_envs+=(--setenv=XCURSOR_PATH=$data/icons)
 
 # Fonts
 container_binds+=(--bind-ro=$host_data/fonts:$data/fonts --bind-ro=$host_conf/fontconfig:$conf/fontconfig)
-container_envs+=(--setenv=_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true")
+# container_envs+=(--setenv=_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true")
+container_envs+=(--setenv=_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd")
 
 # Display
 # X.org

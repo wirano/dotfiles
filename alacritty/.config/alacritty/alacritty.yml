@@ -10,8 +10,7 @@
 # to the user's home directory starting with `~/`.
 import:
 #  - /path/to/alacritty.yml
-#  - ~/.config/alacritty/themes/nord.yml
-  - ~/.config/alacritty/themes/catppuccin-frappe.yml
+  - ~/.config/alacritty/themes/nord.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -119,10 +118,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: SauceCodePro Nerd Font
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    style: Medium
 
   # Bold font face
   bold:
@@ -130,10 +129,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: SauceCodePro Nerd Font Mono
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
-    style: Bold
+    style: Medium
 
   # Italic font face
   italic:
@@ -141,10 +140,10 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: SauceCodePro Nerd Font Mono
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    style: Medium
 
   # Bold italic font face
   bold_italic:
@@ -152,13 +151,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: SauceCodePro Nerd Font Mono
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
-    style: Bold Italic
+    style: Medium
 
   # Point size
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -179,7 +178,7 @@ font:
   # If `true`, Alacritty will use a custom built-in font for box drawing
   # characters (Unicode points 2500 - 259f).
   #
-  builtin_box_drawing: true
+  builtin_box_drawing: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -295,9 +294,6 @@ live_config_reload: true
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 #working_directory: None
-
-# Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: true
 
 # Offer IPC using `alacritty msg` (unix only)
 ipc_socket: true

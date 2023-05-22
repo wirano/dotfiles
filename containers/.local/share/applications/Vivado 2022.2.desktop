@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Vivado 2022.2
+Comment=Vivado 2022.2
+Icon=/home/wirano/.local/share/icons/vivado_logo.png
+Exec=vivado
+Categories=Development;IDE;
+

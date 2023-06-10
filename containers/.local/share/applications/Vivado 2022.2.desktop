@@ -3,7 +3,7 @@ Encoding=UTF-8
 Type=Application
 Name=Vivado 2022.2
 Comment=Vivado 2022.2
-Icon=/home/wirano/.local/share/icons/vivado_logo.png
+Icon=vivado
 Exec=vivado
 Categories=Development;IDE;
 

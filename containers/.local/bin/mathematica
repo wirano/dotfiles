@@ -1,7 +1,7 @@
 #!/bin/env zsh
 
 local app=${0:t}
-local app_path=/opt/Xilinx/Vivado/2022.2/bin/vivado
+local app_path=mathematic
 local argv=($*)
 local home=/home/$app
 local host_conf=${XDG_CONFIG_HOME:-$HOME/.config}
@@ -16,7 +16,8 @@ local container_envs=(--setenv=XDG_RUNTIME_DIR=/run/host)
 local container_binds=(--bind-ro=/etc/resolv.conf)
 
 # Working Dir
-container_binds+=(--bind=$HOME/Workspace/code/Xilinx:$home/Xilinx)
+# container_binds+=(--bind=$HOME/Workspace/code/Xilinx:$home/Xilinx)
+container_binds+=(--bind-ro=$HOME/tmp:$home/tmp)
 
 # Tray
 local host_dbus=${DBUS_SESSION_BUS_ADDRESS#unix:path=}
@@ -51,12 +52,12 @@ xauth nextract - "$DISPLAY" | sed -e 's/^..../ffff/' | xauth -f "$xauth_file" nm
 container_options+=(--bind=$xauth_file --setenv=XAUTHORITY=$xauth_file)
 # Wayland
 # see:https://discuss.linuxcontainers.org/t/howto-use-the-hosts-wayland-and-xwayland-servers-inside-containers/8765
-if [[ -d $WAYLAND_DISPLAY ]] {
+# if [[ -d $WAYLAND_DISPLAY ]] {
     local host_wayland=/run/user/$UID/wayland-0
     local container_wayland=/run/host/wayland-0
     container_binds+=(--bind=$host_wayland:$container_wayland)
     container_envs+=(--setenv=WAYLAND_DISPLAY=$WAYLAND_DISPLAY)
-}
+# }
 
 # Device
 container_binds+=(--bind=/dev/dri/ --property=DeviceAllow='char-drm rw') # Graphic cards
@@ -64,5 +65,6 @@ container_binds+=(--bind=/dev/input/ --property=DeviceAllow='char-input r') # Jo
 
 #print -l $container_options
 
-pkexec systemd-nspawn $container_options $container_binds $container_envs $app_path $argv
+pkexec systemd-nspawn $container_options $container_binds $container_envs
+# $app_path $argv
 

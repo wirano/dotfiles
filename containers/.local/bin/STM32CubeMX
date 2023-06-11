@@ -126,7 +126,6 @@ if [[ -n $(lsmod | grep -i nvidia) ]] {
 }
 
 #print -l $container_options
-container_binds+=(--bind=$HOME/tmp:/tmp/t)
 
-pkexec systemd-nspawn $container_options $container_binds $container_envs #$app $argv
+pkexec systemd-nspawn $container_options $container_binds $container_envs $app $argv
 

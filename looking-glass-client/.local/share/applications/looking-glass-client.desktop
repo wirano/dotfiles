@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=looking-glass-client
+Comment=A client application for accessing the LookingGlass IVSHMEM device of a VM
+Categories=Network;RemoteAccess;
+TryExec=/usr/bin/looking-glass-client
+Exec=looking-glass-client
+Icon=lookingglass
+Terminal=false
+Type=Application

@@ -13,6 +13,9 @@ local container_options=(--as-pid2 --machine=$app --user=$app --chdir=$home)
 local container_envs=(--setenv=XDG_RUNTIME_DIR=$container_xdg_runtime_dir)
 local container_binds=(--tmpfs="$container_xdg_runtime_dir":uid=1000,gid=1000)
 
+# Working Dir
+container_binds+=(--bind=$HOME/Workspace/code/STM32:$home/workspace)
+
 # Network
 container_binds+=(--bind-ro=/etc/resolv.conf)
 
@@ -34,6 +37,8 @@ container_envs+=(--setenv=XCURSOR_PATH=$data/icons)
 
 # Fonts
 container_binds+=(--bind-ro=$host_data/fonts:$data/fonts --bind-ro=$host_conf/fontconfig:$conf/fontconfig)
+# container_envs+=(--setenv=_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true")
+container_envs+=(--setenv=_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd")
 
 # Display
 # X.org
@@ -115,11 +120,13 @@ if [[ -n $(lsmod | grep -i nvidia) ]] {
                         --bind=/usr/share/glvnd/egl_vendor.d/10_nvidia.json:/usr/share/glvnd/egl_vendor.d/10_nvidia.json \
                         --bind=/usr/share/licenses/nvidia-utils/LICENSE:/usr/share/licenses/nvidia-utils/LICENSE \
                         --bind=/usr/share/vulkan/icd.d/nvidia_icd.json:/usr/share/vulkan/icd.d/nvidia_icd.json \
-                        --bind=/usr/share/vulkan/implicit_layer.d/nvidia_layers.json:/usr/share/vulkan/implicit_layer.d/nvidia_layers.json)
+                        --bind=/usr/share/vulkan/implicit_layer.d/nvidia_layers.json:/usr/share/vulkan/implicit_layer.d/nvidia_layers.json
+                    )
     container_binds+=(--bind-ro=/usr/bin/prime-run)
 }
 
 #print -l $container_options
+container_binds+=(--bind=$HOME/tmp:/tmp/t)
 
-pkexec systemd-nspawn $container_options $container_binds $container_envs $app $argv
+pkexec systemd-nspawn $container_options $container_binds $container_envs #$app $argv
 

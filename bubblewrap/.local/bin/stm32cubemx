@@ -1,0 +1,52 @@
+#!/bin/bash
+
+notify-send --icon=stock_dialog-info --app-name=STM32CubeMX "Running in bubblewrap"
+
+XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
+FONTCONFIG_HOME="${XDG_CONFIG_HOME}/fontconfig"
+STMCUBE_PATH="${HOME}/.cache/ST/stmcube"
+STMCUFINDER_PATH="${HOME}/.local/share/ST/stmcufinder"
+STM32CUBEMX_PATH="${HOME}/.local/share/ST/stm32cubemx"
+STM32CUBE_PATH="${HOME}/.local/share/ST/STM32Cube"
+
+if [ ! -d "${STMCUBE_PATH}" ]; then mkdir -p "${STMCUBE_PATH}"; fi
+if [ ! -d "${STMCUFINDER_PATH}" ]; then mkdir -p "${STMCUFINDER_PATH}"; fi
+if [ ! -d "${STM32CUBEMX_PATH}" ]; then mkdir -p "${STM32CUBEMX_PATH}"; fi
+if [ ! -d "${STM32CUBE_PATH}" ]; then mkdir -p "${STM32CUBE_PATH}"; fi
+
+bwrap --new-session --cap-drop ALL --die-with-parent \
+    --symlink usr/lib /lib \
+    --symlink usr/lib64 /lib64 \
+    --symlink usr/bin /bin \
+    --symlink usr/bin /sbin \
+    --proc /proc \
+    --ro-bind /sys /sys \
+    --ro-bind /usr /usr \
+    --ro-bind /usr/lib/snapd-xdg-open/xdg-open /usr/bin/xdg-open \
+    --ro-bind /usr/lib/snapd-xdg-open/xdg-open /usr/bin/chromium \
+    --ro-bind /opt/stm32cubemx /opt/stm32cubemx \
+    --ro-bind /etc /etc \
+    --ro-bind-try "${FONTCONFIG_HOME}" "${FONTCONFIG_HOME}" \
+    --dev-bind /dev /dev \
+    --dev-bind /dev/dri /dev/dri \
+    --dev-bind /run/dbus /run/dbus \
+    --ro-bind /run/user/$UID/bus /run/user/$UID/bus \
+    --bind /tmp/.X11-unix/X0 /tmp/.X11-unix/X0 \
+    --ro-bind-try "${XAUTHORITY}" "${XAUTHORITY}" \
+    --ro-bind-try "${HOME}/.config/mimeapps.list" "${HOME}/.config/mimeapps.list" \
+    --bind "${HOME}/.cache/fontconfig" "${HOME}/.cache/fontconfig" \
+    --bind "${HOME}/.config/java/.java" "${HOME}/.java" \
+    --bind "${HOME}/.config/java/.java" "${HOME}/.config/java/.java" \
+    --bind "${STMCUBE_PATH}" "${HOME}/.stmcube" \
+    --bind "${STMCUFINDER_PATH}" "${HOME}/.stmcufinder" \
+    --bind "${STM32CUBEMX_PATH}" "${HOME}/.stm32cubemx" \
+    --bind "${STM32CUBE_PATH}" "${HOME}/STM32Cube" \
+    --bind "${HOME}/Workspace" "${HOME}/Workspace" \
+    stm32cubemx "$@"
+
+    # --ro-bind /etc/passwd /etc/passwd \
+    # --ro-bind /etc/localtime /etc/localtime \
+    # --ro-bind /etc/resolv.conf /etc/resolv.conf \
+    # --ro-bind /etc/ssl /etc/ssl \
+    # --ro-bind /etc/java11-openjdk /etc/java11-openjdk \
+    # --ro-bind-try /etc/fonts /etc/fonts \

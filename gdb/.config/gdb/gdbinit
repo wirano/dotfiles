@@ -1,2 +1,5 @@
 set debuginfod enabled on
 set auto-load safe-path /
+
+source ~/.config/gdb/gdb-dashboard.gdb
+

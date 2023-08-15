@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Vitis 2023.1 (nspwan)
+Comment=Vitis 2023.1
+Icon=vitis
+Exec=vitis_2023.1.nspawn
+Categories=Development;IDE;

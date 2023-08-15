@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Vivado 2023.1 (bwrap)
+Comment=Vivado 2023.1
+Icon=vivado
+Exec=vivado.bwrap
+Categories=Development;IDE;
+

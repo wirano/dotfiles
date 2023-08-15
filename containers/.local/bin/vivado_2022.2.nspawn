@@ -61,8 +61,11 @@ if [[ -d $WAYLAND_DISPLAY ]] {
 # Device
 container_binds+=(--bind=/dev/dri/ --property=DeviceAllow='char-drm rw') # Graphic cards
 container_binds+=(--bind=/dev/input/ --property=DeviceAllow='char-input r') # Joysticks
+container_binds+=(--bind=/dev/bus/usb/ --property=DeviceAllow='char-usb_device rwm') # USB
 
 #print -l $container_options
+
+container_binds+=(--bind-ro=${HOME}/.cache/paru/clone/vitis/:${home}/installer)
 
 pkexec systemd-nspawn $container_options $container_binds $container_envs $app_path $argv
 

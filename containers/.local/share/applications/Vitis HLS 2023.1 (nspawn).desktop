@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Vitis HLS 2023.1 (nspawn)
+Comment=Vitis HLS 2023.1
+Icon=vitis_hls
+Exec=vitis_hls_2023.1.nspawn
+Categories=Development;IDE;

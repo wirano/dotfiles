@@ -1,9 +1,9 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=Vivado 2022.2
-Comment=Vivado 2022.2
+Name=Vivado 2023.1 (nspawn)
+Comment=Vivado 2022.1
 Icon=vivado
-Exec=vivado
+Exec=vivado_2023.1.nspwan
 Categories=Development;IDE;
 

@@ -4,7 +4,7 @@
 # sadly the author seems not likely to move this file to a floder under ~/.cache
 # see: https://github.com/romkatv/powerlevel10k/issues/1817
 # see: https://github.com/romkatv/powerlevel10k/issues/1561
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"]] {
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]] {
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 }
 

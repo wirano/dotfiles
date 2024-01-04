@@ -1,22 +1,22 @@
-# zsh_unplugged
-source $ZDOTDIR/zsh_unplugged_wirano.zsh
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 # sadly the author seems not likely to move this file to a floder under ~/.cache
 # see: https://github.com/romkatv/powerlevel10k/issues/1817
 # see: https://github.com/romkatv/powerlevel10k/issues/1561
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh" ]] {
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"]] {
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 }
+
+# zsh_unplugged
+source $ZDOTDIR/zsh_unplugged_wirano.zsh
 
 # Basic config
 
 autoload -U compinit
 compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
 
-# History
+# History {{{1
 HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/zsh_history
 HISTSIZE=128000
 SAVEHIST=128000
@@ -24,6 +24,8 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 # add a space before a command to ignore history
 setopt hist_ignore_space
+setopt share_history
+# }}}
 
 # disable bell
 unsetopt beep
@@ -42,13 +44,14 @@ setopt magic_equal_subst
 
 # dirstack
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"
+[[ ! -f $DIRSTACKFILE ]] && touch $DIRSTACKFILE
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
       dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
         [[ -d $dirstack[1] ]] && cd $dirstack[1]
 fi
 chpwd() {
       print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-  }
+}
 
 DIRSTACKSIZE=20
 
@@ -66,13 +69,15 @@ bindkey '^[[B' history-substring-search-down
 
 ZLE_RPROMPT_INDENT=0
 
-# Preferred editor for local and remote sessions
+# Preferred editor for local and remote sessions {{{1
 if [[ -n $SSH_CONNECTION ]] {
     export EDITOR='vim'
 } else {
     export EDITOR='vim'
 }
+# }}}
 
+# TMUX {{{1
 if [[ $TERM != linux ]] {
     source $ZPLUGINDIR/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -86,8 +91,9 @@ if [[ $TERM != linux ]] {
         && [[ -z $TMUX ]] \
         && { tmux attach || tmux; } >/dev/null 2>&1
 }
+# }}}
 
-## Plugins
+## Plugins {{{1
 plugins=(
     # use zsh-defer magic to load the remaining plugins at hypersonic speed!
     #romkatv/zsh-defer
@@ -121,4 +127,11 @@ files=(
 ## clone, source, and add to fpath
 plugin-load $plugins
 load-files $files
+
+if [[ $TERM == linux ]] {
+    powerlevel10k_plugin_unload
+}
+# }}}
+
+# vim:fdm=marker
 

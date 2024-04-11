@@ -48,4 +48,4 @@ bwrap --new-session --cap-drop ALL --unshare-all --die-with-parent --share-net \
     --bind "${HOME}/Workspace" "${HOME}/Workspace" \
     --ro-bind "${HOME}/.vim" "${HOME}/.vim" \
     --setenv _JAVA_OPTIONS "-Djava.util.prefs.userRoot=/home/wirano/.config/java -Dawt.useSystemAAFontSettings=lcd" \
-    /opt/Xilinx/Vitis_HLS/2023.1/bin/vitis_hls "$@"
+    /opt/Xilinx/Vitis_HLS/2023.2/bin/vitis_hls "$@"

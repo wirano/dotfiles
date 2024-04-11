@@ -2,8 +2,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=Vitis HLS 2023.1 (bwrap)
-Comment=Vitis HLS 2023.1
-Icon=/opt/Xilinx/Vitis_HLS/2023.1/doc/images/vitis_hls_icon.png
+Name=Vitis HLS 2023.2 (bwrap)
+Comment=Vitis HLS 2023.2
+Icon=/opt/Xilinx/Vitis_HLS/2023.2/doc/images/vitis_hls_icon.png
 Exec=vitis_hls.bwrap
 Categories=Development;IDE;

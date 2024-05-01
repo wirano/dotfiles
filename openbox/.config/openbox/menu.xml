@@ -8,11 +8,16 @@
       <command>xdp-screen-cast --show-cursor</command>
     </action>
   </item>
+  <item label="OBS Studio">
+    <action name="Execute">
+      <command>obs</command>
+    </action>
+  </item>
 </menu>
 
 <menu id="apps-term-menu" label="Terminals">
-  <item label="Xterm">
-    <action name="Execute"><command>xterm -fa "Source Code-16"</command></action>
+  <item label="Konsole">
+    <action name="Execute"><command>konsole</command></action>
   </item>
 </menu>
 

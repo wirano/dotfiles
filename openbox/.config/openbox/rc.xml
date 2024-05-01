@@ -643,7 +643,21 @@
   <!-- show the manage desktops section in the client-list-(combined-)menu -->
 </menu>
 
+
 <applications>
+  <application title="窗口投影（预览）" type="normal">
+    <layer>below</layer>
+    <focus>yes</focus>
+    <desktop>1</desktop>
+    <position>
+      <y>0</y>
+      <x>0</x>
+      <monitor>1</monitor>
+    </position>
+    <skip_taskbar>yes</skip_taskbar>
+    <maximized>true</maximized>
+    <decor>no</decor>
+  </application>
 <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.

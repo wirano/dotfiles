@@ -1,0 +1,5 @@
+# 缓冲区行数
+defscrollback 10000
+
+# 支持鼠标滚轮
+termcapinfo xterm ti@:te@

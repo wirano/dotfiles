@@ -1,9 +1,12 @@
 #!/bin/bash
 
-notify-send --icon=stock_dialog-info --app-name=Vivado "Running in bubblewrap"
+SCRIPT_DIR=$(cd "$(dirname "$0")";pwd)
+source $SCRIPT_DIR/bwrap_gui_common.sh
 
 XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
 FONTCONFIG_HOME="${XDG_CONFIG_HOME}/fontconfig"
+
+JAVA_OPTIONS="-Djava.util.prefs.userRoot=/home/wirano/.config/java -Dawt.useSystemAAFontSettings=lcd"
 
 MOZILLA_PATH="${XDG_CONFIG_HOME}/mozilla"
 XILINX_PATH="${XDG_CONFIG_HOME}/Xilinx"
@@ -11,41 +14,13 @@ XILINX_PATH="${XDG_CONFIG_HOME}/Xilinx"
 if [ ! -d "${MOZILLA_PATH}" ]; then mkdir -p "${MOZILLA_PATH}"; fi
 if [ ! -d "${XILINX_PATH}" ]; then mkdir -p "${XILINX_PATH}"; fi
 
-bwrap --new-session --cap-drop ALL --unshare-all --die-with-parent --share-net \
-    --symlink usr/lib /lib \
-    --symlink usr/lib64 /lib64 \
-    --symlink usr/bin /bin \
-    --symlink usr/bin /sbin \
-    --proc /proc \
-    --ro-bind /sys /sys \
-    --ro-bind /usr /usr \
-    --ro-bind /usr/lib/snapd-xdg-open/xdg-open /usr/bin/xdg-open \
-    --ro-bind /usr/lib/snapd-xdg-open/xdg-open /usr/bin/chromium \
-    --ro-bind /opt/Xilinx /opt/Xilinx \
-    --ro-bind /etc/hosts /etc/hosts \
-    --ro-bind /etc/passwd /etc/passwd \
-    --ro-bind /etc/localtime /etc/localtime \
-    --ro-bind /etc/resolv.conf /etc/resolv.conf \
-    --ro-bind /etc/ssl /etc/ssl \
-    --ro-bind /etc/digilent-adept.conf /etc/digilent-adept.conf \
-    --ro-bind /etc/ld.so.conf.d /etc/ld.so.conf.d \
-    --ro-bind /etc/udev/rules.d /etc/udev/rules.d \
-    --ro-bind /etc/vimrc /etc/vimrc \
-    --ro-bind-try /etc/fonts /etc/fonts \
-    --ro-bind-try "${FONTCONFIG_HOME}" "${FONTCONFIG_HOME}" \
-    --dev-bind /dev /dev \
-    --dev-bind /run/dbus /run/dbus \
-    --ro-bind /sys /sys \
-    --ro-bind /run/user/$UID/bus /run/user/$UID/bus \
-    --bind /tmp/.X11-unix/X0 /tmp/.X11-unix/X0 \
-    --ro-bind-try "${XAUTHORITY}" "${XAUTHORITY}" \
-    --ro-bind-try "${HOME}/.config/mimeapps.list" "${HOME}/.config/mimeapps.list" \
-    --bind "${HOME}/.cache/fontconfig" "${HOME}/.cache/fontconfig" \
-    --bind "${HOME}/.config/java/.java" "${HOME}/.java" \
-    --bind "${HOME}/.config/java/.java" "${HOME}/.config/java/.java" \
-    --bind "${MOZILLA_PATH}" "${HOME}/.mozilla" \
-    --bind "${XILINX_PATH}" "${HOME}/.Xilinx" \
-    --bind "${HOME}/Workspace" "${HOME}/Workspace" \
-    --ro-bind "${HOME}/.vim" "${HOME}/.vim" \
-    --setenv _JAVA_OPTIONS "-Djava.util.prefs.userRoot=/home/wirano/.config/java -Dawt.useSystemAAFontSettings=lcd" \
-    /opt/Xilinx/Vivado/2023.2/bin/vivado "$@"
+bwrap_gui_common \
+--bind /tmp/.X11-unix/X0 /tmp/.X11-unix/X0 \
+--bind $XAUTHORITY $XAUTHORITY \
+--bind "${HOME}/.config/java/.java" "${HOME}/.config/java/.java" \
+--bind "${MOZILLA_PATH}" "${HOME}/.mozilla" \
+--bind "${XILINX_PATH}" "${HOME}/.Xilinx" \
+--bind "${HOME}/Workspace" "${HOME}/Workspace" \
+--ro-bind "${HOME}/.vim" "${HOME}/.vim" \
+--setenv _JAVA_OPTIONS "${JAVA_OPTIONS}" \
+/opt/Xilinx/Vivado/2023.2/bin/vivado "$@"

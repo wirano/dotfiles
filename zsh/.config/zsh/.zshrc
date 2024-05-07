@@ -122,6 +122,9 @@ files=(
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
+    
+    # atuin
+    https://raw.githubusercontent.com/atuinsh/atuin/main/atuin.plugin.zsh
 )
 
 ## clone, source, and add to fpath

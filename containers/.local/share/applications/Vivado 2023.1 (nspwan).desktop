@@ -1,9 +1,19 @@
 [Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Vivado 2023.1 (nspawn)
-Comment=Vivado 2022.1
-Icon=vivado
-Exec=vivado_2023.1.nspwan
 Categories=Development;IDE;
-
+Comment[zh_CN]=Vivado 2022.1
+Comment=Vivado 2022.1
+Encoding=UTF-8
+Exec=vivado_2023.1.nspawn
+GenericName[zh_CN]=
+GenericName=
+Icon=vivado
+MimeType=
+Name[zh_CN]=Vivado 2023.1 (nspawn)
+Name=Vivado 2023.1 (nspawn)
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

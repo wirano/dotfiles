@@ -1,9 +1,19 @@
 [Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Vivado 2022.2 (nspawn)
-Comment=Vivado 2022.2
-Icon=vivado
-Exec=vivado_2022.2.nspwan
 Categories=Development;IDE;
-
+Comment[zh_CN]=Vivado 2022.2
+Comment=Vivado 2022.2
+Encoding=UTF-8
+Exec=vivado_2022.2.nspwan
+GenericName[zh_CN]=
+GenericName=
+Icon=vivado_logo
+MimeType=
+Name[zh_CN]=Vivado 2022.2 (nspawn)
+Name=Vivado 2022.2 (nspawn)
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

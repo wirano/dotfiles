@@ -10,4 +10,5 @@ bwrap_gui_common \
 --bind $XDG_CONFIG_HOME/mozilla $HOME/.mozilla \
 --ro-bind ~/dotfiles/firefox/.config/mozilla/firefox/5ffmjy8z.default-release/chrome ~/.mozilla/firefox/5ffmjy8z.default-release/chrome \
 --bind $HOME/Downloads $HOME/Downloads \
-/usr/bin/firefox
+--bind $HOME/tmp $HOME/tmp \
+/usr/bin/firefox "${@}"

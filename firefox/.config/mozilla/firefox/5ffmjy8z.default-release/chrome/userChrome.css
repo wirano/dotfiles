@@ -6,7 +6,6 @@
       --urlbar-border-top: #000;
       --urldrop-bg: #0d0d15;
       --urlbar-border-bottom: #404040;
-      --urlbar-height: 30px;
       --urlbar-outline: #414868;
 
       --fullscreen-warn: rgb(25,25,25);
@@ -83,7 +82,8 @@
 }
 
 #urlbar-container{
-   margin-bottom: 10px;
+   margin-bottom: 4px;
+   display: initial;
 }
 
 #urlbar-background {
@@ -98,7 +98,7 @@
 }
 
 #wrapper-urlbar-container #urlbar {
-  height: var(--urlbar-height) !important;
+  height: 30px !important;
 }
 
  /* Active Address/Search Field Dropdown */
@@ -192,9 +192,8 @@
  /* Navigation Bar */
  
 #nav-bar {
-   margin-top: -10px;
+   margin-top: -8px;
    background-color: var(--bg) !important;
-   position: static !important;
 }
 
 #nav-bar[inFullscreen="true"]{
@@ -214,6 +213,10 @@
  }
 
  /* Navigation bar Buttons */
+toolbarbutton{
+   margin-top: -5px !important;
+}
+
 toolbarbutton:hover{
    cursor: pointer;
 }
@@ -232,25 +235,25 @@ toolbarbutton:hover{
 }
 
 /* Show URL buttons on Hover */
-/*   #nav-bar:not([customizing="true"])
-  > #nav-bar-customization-target
-  > #urlbar-container:not(:hover)
-  > #urlbar:not([focused])
-  > #urlbar-input-container
-  > #page-action-buttons {
-  opacity: 0;
-}*/
+/*    #nav-bar:not([customizing="true"]) */
+/*   > #nav-bar-customization-target */
+/*   > #urlbar-container:not(:hover) */
+/*   > #urlbar:not([focused]) */
+/*   > #urlbar-input-container */
+/*   > #page-action-buttons { */
+/*   opacity: 0; */
+/* } */
 #page-action-buttons {
   transition: opacity 0.15s ease;
 }
-/*#nav-bar:not([customizing="true"])
-  > #nav-bar-customization-target
-  > #urlbar-container:not(:hover)
-  > #urlbar:not([focused])
-  > #urlbar-input-container
-  > #tracking-protection-icon-container {
-  opacity: 0;
-}*/
+/* #nav-bar:not([customizing="true"]) */
+/*   > #nav-bar-customization-target */
+/*   > #urlbar-container:not(:hover) */
+/*   > #urlbar:not([focused]) */
+/*   > #urlbar-input-container */
+/*   > #tracking-protection-icon-container { */
+/*   opacity: 0; */
+/* } */
 #tracking-protection-icon-container {
   transition: opacity 0.15s ease;
 }

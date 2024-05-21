@@ -9,8 +9,5 @@ path=($HOME/.local/bin $path)
 ## use $TTY is a much faster trick: https://github.com/romkatv/powerlevel10k/#how-do-i-export-gpg_tty-when-using-instant-prompt
 export GPG_TTY=$TTY
 
-## enable firefox use wayland
-[[ $XDG_SESSION_TYPE == wayland ]] && export MOZ_ENABLE_WAYLAND=1
-
 [[ ! $XDG_CONFIG_HOME ]] && export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 

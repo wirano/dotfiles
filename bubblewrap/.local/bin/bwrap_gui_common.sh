@@ -23,9 +23,11 @@ bwrap_gui_common(){
     --bind "${XDG_CONFIG_HOME}" "${XDG_CONFIG_HOME}" \
     --bind "${XDG_CACHE_HOME}" "${XDG_CACHE_HOME}" \
     --bind "${XDG_DATA_HOME}" "${XDG_DATA_HOME}" \
-    --ro-bind ~/dotfiles ~/dotfiles \
+    --ro-bind "${HOME}"/dotfiles "${HOME}"/dotfiles \
     --ro-bind "${XDG_CONFIG_HOME}"/mimeapps.list "${XDG_CONFIG_HOME}"/mimeapps.list \
     --ro-bind "${XDG_CONFIG_HOME}"/fontconfig "${XDG_CONFIG_HOME}"/fontconfig \
+    --bind /run/media/ /run/media/ \
+    --bind "${HOME}"/tmp "${HOME}"/tmp \
     --chdir ~ \
     "$@"
 }

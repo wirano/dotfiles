@@ -78,14 +78,6 @@ return {
                     },
                 },
             },
-            event_handlers = {
-                {
-                    event = "file_opened",
-                    handler = function()
-                        rikka.vimCmd("Neotree close")
-                    end,
-                },
-            },
         }
         local neotree = require("neo-tree")
 

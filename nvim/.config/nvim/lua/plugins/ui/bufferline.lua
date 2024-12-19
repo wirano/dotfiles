@@ -49,7 +49,7 @@ return {
         },
         }
 
-        vim.keymap.set("n", "<space>bp", "<cmd>BufferLinePick<CR>", {
+        vim.keymap.set("n", "<Leader>bp", "<cmd>BufferLinePick<CR>", {
         desc = "pick a buffer",
         })
     end,

@@ -19,11 +19,11 @@ return {
         ---@diagnostic disable-next-line: duplicate-set-field
         function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
             opts = opts or {}
-            lspUtilOpenFloatingPreview(contents, syntax, opts, ...)
-            -- local bufnr, winnr = lspUtilOpenFloatingPreview(contents, syntax, opts, ...)
-            -- if bufnr then
-            --     vim.api.nvim_win_set_var(winnr, "winblend", 10)
-            -- end
+            local bufnr, winnr = lspUtilOpenFloatingPreview(contents, syntax, opts, ...)
+            if bufnr then
+                vim.api.nvim_win_set_var(winnr, "winblend", 10)
+            end
+            return bufnr, winnr
         end
 
         vim.api.nvim_create_autocmd("LspAttach", {

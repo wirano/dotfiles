@@ -15,14 +15,50 @@ return {
         return builtin.foldfunc(args)
     end
 
-    vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
     require("statuscol").setup({
-        relculright = false,
+        relculright = false,  -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
-            { text = { "%s" }, click = "v:lua.ScSa" },
-            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-            { text = { foldfunc, " " }, condition = { true, builtin.not_empty }, click = "v:lua.ScFa" },
+            -- Simulate the sign column while not showing the gitsigns
+            {
+                sign = {
+                    name = { ".*" },
+                    text = { ".*" },
+                },
+                click = "v:lua.ScSa",
+            },
+            -- Simulate the line number column without the right padding
+            {
+                text = { builtin.lnumfunc },
+                click = "v:lua.ScLa",
+            },
+            -- Show gitsigns at the position of line numbers' right padding
+            {
+                sign = {
+                    namespace = { "gitsigns" },
+                    colwidth = 1,
+                    wrap = true,
+                    foldclosed = true,
+                },
+                condition = {
+                    function(args)
+                    return vim.wo[args.win].number or vim.b[args.buf].gitsigns_status
+                    end,
+                },
+                click = "v:lua.ScSa",
+            },
+            {
+                text = {
+                    function(args)
+                        args.fold.close = ""
+                        args.fold.open = ""
+                        args.fold.sep = " "
+                        return foldfunc(args)
+                    end,
+                    ' ',
+                    },
+                condition = { true, builtin.not_empty },
+                click = "v:lua.ScFa",
+            },
         }
     })
   end,

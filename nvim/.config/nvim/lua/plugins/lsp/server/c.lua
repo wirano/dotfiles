@@ -26,7 +26,7 @@ function Server.setup(opts)
                     threads = 0,
                 },
                 clang = {
-                    excludeArgs = { "-Wall" },
+                    excludeArgs = { "-mabi=lp64" },
                 },
                 highlight = {
                     lsRanges = true,

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(cd "$(dirname "$0")";pwd)
+source $SCRIPT_DIR/bwrap_gui_common.sh
+
+XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}"
+FONTCONFIG_HOME="${XDG_CONFIG_HOME}/fontconfig"
+
+bwrap_gui_common \
+    --bind "${HOME}/Workspace" "${HOME}/Workspace" \
+    /usr/bin/code --wait "${@}"

@@ -21,9 +21,7 @@ return {
             opts = opts or {}
             local bufnr, winnr = lspUtilOpenFloatingPreview(contents, syntax, opts, ...)
             if bufnr then
-                vim.api.nvim_win_set_var(winnr, "winblend", 10)
-            end
-            return bufnr, winnr
+                vim.api.nvim_win_set_var(winnr, "winblend", 10) end return bufnr, winnr
         end
 
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -60,6 +58,7 @@ return {
             "markdown",
             "python",
             "rust",
+            "typst",
         }
 
         for _, server in ipairs(servers) do

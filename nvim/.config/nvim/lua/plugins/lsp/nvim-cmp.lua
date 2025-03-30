@@ -59,8 +59,8 @@ return {
             },
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
                 { name = "buffer" },
+                { name = "luasnip" },
                 { name = "path" },
                 { name = "calc" },
             }),
@@ -157,24 +157,6 @@ return {
                             cmp.select_prev_item()
                         else
                             cmp.complete()
-                        end
-                    end,
-                },
-                ["<Down>"] = {
-                    c = function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        else
-                            fallback()
-                        end
-                    end,
-                },
-                ["<Up>"] = {
-                    c = function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        else
-                            fallback()
                         end
                     end,
                 },

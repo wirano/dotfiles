@@ -87,9 +87,9 @@ if [[ $TERM != linux ]] {
     # https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login
     # if tmux is executable and not inside a tmux session, then try to attach.
     # if attachment fails, start a new session
-    [[ -x $(command -v tmux) ]] \
-        && [[ -z $TMUX ]] \
-        && { tmux attach || tmux; } >/dev/null 2>&1
+    # [[ -x $(command -v tmux) ]] \
+    #     && [[ -z $TMUX ]] \
+    #     && { tmux attach || tmux; } >/dev/null 2>&1
 }
 # }}}
 
@@ -122,7 +122,7 @@ files=(
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
     https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
-    
+
     # atuin
     https://raw.githubusercontent.com/atuinsh/atuin/main/atuin.plugin.zsh
 )

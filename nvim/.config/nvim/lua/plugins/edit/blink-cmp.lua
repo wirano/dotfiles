@@ -30,12 +30,14 @@ return {
 				"fallback",
 			},
 		},
+
 		cmdline = {
 			keymap = {
 				preset = "default",
 				["<Tab>"] = { "select_next", "fallback" },
 				["<S-Tab>"] = { "select_prev", "fallback" },
 			},
+
 			completion = {
 				list = {
 					selection = {
@@ -46,14 +48,20 @@ return {
 				menu = { auto_show = true },
 			},
 		},
+
 		appearance = {
 			use_nvim_cmp_as_default = false,
+			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- Adjusts spacing to ensure icons are aligned
 			nerd_font_variant = "mono",
 		},
+
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
 		},
+
 		signature = { enabled = true },
+
 		completion = {
 			documentation = {
 				auto_show = true,

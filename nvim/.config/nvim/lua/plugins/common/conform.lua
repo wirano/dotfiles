@@ -1,34 +1,24 @@
 return {
-    'stevearc/conform.nvim',
-    event = "VeryLazy",
-    config = function()
-        local conform = require("conform")
+	"stevearc/conform.nvim",
+	event = "VeryLazy",
 
-        local opts = {
-            formatters_by_ft = {
-                lua = { "stylua" },
-                json = { "jq" },
-                yaml = { "yamlfmt" },
-                markdown = { "autocorrect" },
-                python = function(bufnr)
-                    if require("conform").get_formatter_info("ruff_format", bufnr).available then
-                        return { "ruff_format" }
-                    else
-                        return { "isort", "black" }
-                    end
-                end,
-                rust = { "rustfmt", lsp_format = "fallback" },
-            },
-            format_on_save = {
-                timeout_ms = 500,
-                lsp_fallback = true,
-            },
-        }
+	opts = {
+		default_format_opts = { timeout_ms = 500, lsp_format = "fallback" },
+		formatters_by_ft = {
+			c = { "clang-format" },
+			cpp = { "clang-format" },
+			cmake = { "cmake_format" },
+			json = { "jq" },
+			lua = { "stylua" },
+			markdown = { "prettier" },
+			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+			rust = { "rustfmt", lsp_format = "fallback" },
+			yaml = { "yamlfmt" },
+		},
 
-        conform.formatters.jq = {
-            prepend_args = { "--indent", "4" },
-        }
-
-        conform.setup(opts)
-    end,
+		format_on_save = {
+			timeout_ms = 100,
+			lsp_fallback = true,
+		},
+	},
 }

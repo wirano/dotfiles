@@ -1,9 +1,10 @@
 return {
 	"stevearc/aerial.nvim",
+	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+
 	opts = {
 		backends = {
 			["_"] = { "lsp", "treesitter", "markdown" },
-			rust = { "treesitter", "lsp" },
 		},
 
 		layout = {
@@ -42,8 +43,14 @@ return {
 		float = {
 			border = "rounded",
 		},
+
+		lsp = {
+			-- If true, fetch document symbols when LSP diagnostics update.
+			diagnostics_trigger_update = true,
+		},
 	},
+
 	keys = {
-		{ "<leader>a", "<Cmd>AerialToggle<CR>", desc = "Outline" },
+		{ "<leader>a", "<Cmd>AerialToggle<CR>", desc = "Toggle Aerial Outline" },
 	},
 }

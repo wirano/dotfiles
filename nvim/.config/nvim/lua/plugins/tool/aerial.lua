@@ -37,6 +37,8 @@ return {
 			preserve_equality = false,
 		},
 
+		filter_kind = false,
+
 		-- Show box drawing characters for the tree hierarchy
 		show_guides = true,
 

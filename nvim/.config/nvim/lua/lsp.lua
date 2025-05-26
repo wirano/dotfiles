@@ -3,7 +3,18 @@ vim.lsp.config("*", {
 })
 
 vim.diagnostic.config({
-	virtual_text = { current_line = true },
+	virtual_text = true,
+	update_in_insert = true,
+	underline = true,
+	severity_sort = true,
+	float = {
+		focusable = true,
+		style = "minimal",
+		border = "rounded",
+		source = true,
+		header = "",
+		prefix = "",
+	},
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -13,6 +24,37 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+-- Improve LSPs UI {{{
+local icons = {
+	Class = " ",
+	Color = " ",
+	Constant = " ",
+	Constructor = " ",
+	Enum = " ",
+	EnumMember = " ",
+	Event = " ",
+	Field = " ",
+	File = " ",
+	Folder = " ",
+	Function = "󰊕 ",
+	Interface = " ",
+	Keyword = " ",
+	Method = "ƒ ",
+	Module = "󰏗 ",
+	Property = " ",
+	Snippet = " ",
+	Struct = " ",
+	Text = " ",
+	Unit = " ",
+	Value = " ",
+	Variable = " ",
+}
+
+local completion_kinds = vim.lsp.protocol.CompletionItemKind
+for i, kind in ipairs(completion_kinds) do
+	completion_kinds[i] = icons[kind] and icons[kind] .. kind or kind
+end
 
 local function on_attach(client, bufnr)
 	--
@@ -33,9 +75,7 @@ local function on_attach(client, bufnr)
 	--
 
 	-- Inlay hints
-	if vim.g.inlay_hint_enabled then
-		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-	end
+	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
 	-- Enable code lens
 	-- if client and client.server_capabilities.codeLensProvider then
@@ -64,24 +104,37 @@ local function on_attach(client, bufnr)
 	end
 
 	-- Document colors
-	if client:supports_method("textDocument/documentColor") then
-		vim.lsp.document_color.enable(true, bufnr)
-	end
+	-- if client:supports_method("textDocument/documentColor") then
+	-- vim.lsp.document_color.enable(true, bufnr)
+	-- end
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local bufnr = args.buf
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		if not client then
+			return
+		end
+
 		on_attach(client, bufnr)
 	end,
 })
 
 -- Enable LSP servers
 local lsp_configs = {}
-for _, v in ipairs(vim.api.nvim_get_runtime_file("lsp/*", true)) do
-	local name = vim.fn.fnamemodify(v, ":t:r")
-	lsp_configs[name] = true
+for _, file in ipairs(vim.api.nvim_get_runtime_file("lsp/*", true)) do
+	-- Read the first line of the file
+	local f = io.open(file, "r")
+	local first_line = f and f:read("*l") or ""
+	if f then
+		f:close()
+	end
+	-- Only include the file if it doesn't start with "-- disable"
+	if not first_line:match("^%-%- disable") then
+		local name = vim.fn.fnamemodify(file, ":t:r") -- `:t` gets filename, `:r` removes extension
+		table.insert(lsp_configs, name)
+	end
 end
 
-vim.lsp.enable(vim.tbl_keys(lsp_configs))
+vim.lsp.enable(lsp_configs)

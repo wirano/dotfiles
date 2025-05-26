@@ -39,6 +39,45 @@ return {
 
 		filter_kind = false,
 
+		-- Define symbol icons. You can also specify "<Symbol>Collapsed" to change the
+		-- icon when the tree is collapsed at that symbol, or "Collapsed" to specify a
+		-- default collapsed icon. The default icon set is determined by the
+		-- "nerd_font" option below.
+		-- If you have lspkind-nvim installed, it will be the default icon set.
+		-- This can be a filetype map (see :help aerial-filetype-map)
+		icons = {
+			Class = " ",
+			Color = " ",
+			Constant = " ",
+			Constructor = " ",
+			Enum = " ",
+			EnumMember = " ",
+			Event = " ",
+			Field = " ",
+			File = " ",
+			Folder = " ",
+			Function = "󰊕 ",
+			Interface = " ",
+			Key = "󰌋 ",
+			Keyword = " ",
+			Method = "ƒ ",
+			Module = "󰏗 ",
+			Namespace = "󰦮 ",
+			Null = "󰟢 ",
+			Number = "󰎠 ",
+			Operator = "󰆕 ",
+			Package = " ",
+			Property = " ",
+			Snippet = " ",
+			Struct = " ",
+			String = " ",
+			TypeParameter = "󰗴 ",
+			Unit = " ",
+			Value = " ",
+			Variable = " ",
+			Collapsed = " ",
+		},
+
 		-- Show box drawing characters for the tree hierarchy
 		show_guides = true,
 

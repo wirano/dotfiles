@@ -1,8 +1,11 @@
+local tools = require("tools")
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"SmiteshP/nvim-navic",
 	},
+	cond = not tools.is_vscode(),
 
 	config = function()
 		local curTime = function()

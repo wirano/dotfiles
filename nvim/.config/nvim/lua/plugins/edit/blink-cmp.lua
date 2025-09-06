@@ -1,5 +1,8 @@
+local tools = require("tools")
+
 return {
 	"saghen/blink.cmp",
+	cond = not tools.is_vscode(),
 	build = "cargo build --release",
 	event = { "InsertEnter", "CmdlineEnter" },
 	opts = {

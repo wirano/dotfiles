@@ -1,5 +1,8 @@
+local tools = require("tools")
+
 return {
     "rcarriga/nvim-notify",
+    cond = not tools.is_vscode(),
     event = "VeryLazy",
     config = function()
         local nvim_notify = require("notify")

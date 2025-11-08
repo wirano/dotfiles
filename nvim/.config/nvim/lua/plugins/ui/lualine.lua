@@ -58,7 +58,18 @@ return {
 						colored = true,
 					},
 				},
-				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_x = {
+					"encoding",
+					{
+						"fileformat",
+						symbols = {
+							unix = "", -- e712
+							dos = "", -- e70f
+							mac = "", -- e711
+						},
+					},
+					"filetype",
+				},
 				lualine_y = { "grapple", { curTime } },
 				-- lualine_z = { "location" },
 				lualine_z = {

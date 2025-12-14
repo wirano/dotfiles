@@ -40,6 +40,8 @@ vim.o.fillchars = "diff:╱"
 vim.o.scrolloff = 2
 vim.o.sidescrolloff = 5
 
+vim.opt.colorcolumn = "81"
+
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 

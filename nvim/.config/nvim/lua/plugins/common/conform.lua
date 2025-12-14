@@ -15,10 +15,15 @@ return {
 			rust = { "rustfmt", lsp_format = "fallback" },
 			yaml = { "yamlfmt" },
 		},
-
-		format_on_save = {
-			timeout_ms = 100,
-			lsp_fallback = true,
+	},
+	keys = {
+		{
+			"<leader>F",
+			function()
+				require("conform").format({ lsp_fallback = true, async = true })
+			end,
+			desc = "Format Document",
+			mode = { "n", "v" },
 		},
 	},
 }

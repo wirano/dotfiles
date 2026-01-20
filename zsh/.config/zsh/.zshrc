@@ -67,6 +67,9 @@ setopt pushdminus
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# enable vi like keybind
+bindkey -v
+
 ZLE_RPROMPT_INDENT=0
 
 # Preferred editor for local and remote sessions {{{1

@@ -2,6 +2,7 @@
 export _Z_DATA=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/z
 
 # add path
+typeset -U path
 path=($HOME/.local/bin $HOME/.local/share/cargo/bin/ $path)
 
 # environment
@@ -9,5 +10,4 @@ path=($HOME/.local/bin $HOME/.local/share/cargo/bin/ $path)
 ## use $TTY is a much faster trick: https://github.com/romkatv/powerlevel10k/#how-do-i-export-gpg_tty-when-using-instant-prompt
 export GPG_TTY=$TTY
 
-[[ ! $XDG_CONFIG_HOME ]] && export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
-
+[[ -z $XDG_SESSION_TYPE || $XDG_SESSION_TYPE == "tty" ]] && export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)

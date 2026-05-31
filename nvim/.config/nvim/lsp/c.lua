@@ -136,7 +136,7 @@ local function setup_config()
 	local lsp_config
 	local root_dir = vim.fs.root(0, base_config.root_markers)
 	if not root_dir then
-		return
+		return ccls_config
 	end
 	local lsp_name, reason = detect_ccls_projects(root_dir)
 

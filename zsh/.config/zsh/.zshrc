@@ -13,11 +13,14 @@ source $ZDOTDIR/zsh_unplugged_wirano.zsh
 
 # Basic config
 
-autoload -U compinit
-compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
+autoload -Uz compinit
+ZCOMPDUMP=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
+[[ ! -d ${ZCOMPDUMP:h} ]] && mkdir -p ${ZCOMPDUMP:h}
+compinit -d $ZCOMPDUMP
 
 # History {{{1
 HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/zsh_history
+[[ ! -d ${HISTFILE:h} ]] && mkdir -p ${HISTFILE:h}
 HISTSIZE=128000
 SAVEHIST=128000
 setopt hist_save_no_dups
@@ -44,7 +47,7 @@ setopt magic_equal_subst
 
 # dirstack
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"
-[[ ! -f $DIRSTACKFILE ]] && touch $DIRSTACKFILE
+[[ ! -f $DIRSTACKFILE ]] && mkdir -p ${DIRSTACKFILE:h} && touch $DIRSTACKFILE
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
       dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
         [[ -d $dirstack[1] ]] && cd $dirstack[1]

@@ -1,5 +1,7 @@
 require("basic")
 
+require("filetype")
+
 require("plugins")
 
 require("lsp")

@@ -7,7 +7,7 @@
 ---@type vim.lsp.Config
 return {
 	cmd = { "beancount-language-server", "--stdio" },
-	filetypes = { "beancount", "bean" },
+	filetypes = { "beancount" },
 	root_markers = { ".git" },
 	single_file_support = true,
 	init_options = {

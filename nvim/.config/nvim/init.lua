@@ -7,3 +7,5 @@ require("lsp")
 require("keymaps")
 
 require("clipboard")
+
+require("autocmds")

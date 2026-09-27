@@ -121,6 +121,15 @@ return {
 				require("fzf-lua").live_grep_native()
 			end,
 			desc = "Live grep",
+            mode = "n",
+		},
+		{
+			"<leader>fw",
+			function()
+				require("fzf-lua").grep_visual()
+			end,
+			desc = "Grep visual",
+            mode = "v",
 		},
 		{
 			"<leader>fr",

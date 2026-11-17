@@ -1,10 +1,13 @@
+---@type LazyPluginSpec
 return {
-    "sindrets/diffview.nvim",
-    config = function()
-        local diffview = require("diffview")
-
-        diffview.setup({
-            enhanced_diff_hl = true,
-        })
-    end,
+  "dlyongemallo/diffview.nvim",
+  cmd = {
+    "DiffviewOpen",
+    "DiffviewFileHistory",
+  },
+  opts = function()
+    return {
+      enhanced_diff_hl = true,
+    }
+  end,
 }
